@@ -13,6 +13,9 @@ config_version=5
 config/name="FlappyBird"
 run/main_scene="uid://cwcek8pt32yu2"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/use_filter=false
+boot_splash/image="uid://bxp5kafewstw5"
 config/icon="uid://cdsxiwun4kp07"
 
 [display]
@@ -20,10 +23,6 @@ config/icon="uid://cdsxiwun4kp07"
 window/size/viewport_width=288
 window/size/viewport_height=256
 window/stretch/mode="canvas_items"
-
-[editor]
-
-movie_writer/disable_vsync=true
 
 [input]
 
