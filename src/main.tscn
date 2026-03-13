@@ -1,0 +1,273 @@
+[gd_scene load_steps=13 format=3 uid="uid://cwcek8pt32yu2"]
+
+[ext_resource type="Script" uid="uid://bcg7rh5cwiedy" path="res://src/main.gd" id="1_27gg6"]
+[ext_resource type="PackedScene" uid="uid://1yt2eq5hulc5" path="res://src/player.tscn" id="1_cei7b"]
+[ext_resource type="Texture2D" uid="uid://dyjbj4rjs0lq6" path="res://img/Background/Background1.png" id="2_g4eit"]
+[ext_resource type="Texture2D" uid="uid://cvubj58xp22su" path="res://img/ground.png" id="4_3jmj3"]
+[ext_resource type="AudioStream" uid="uid://bgbhdhpg2t2tn" path="res://aud/gamestart.mp3" id="5_3jmj3"]
+[ext_resource type="FontFile" uid="uid://dqg3tjyv1gu53" path="res://img/font.ttf" id="5_5mrjc"]
+[ext_resource type="AudioStream" uid="uid://td18mdt4u14k" path="res://aud/dies.ogg" id="5_g4eit"]
+[ext_resource type="AudioStream" uid="uid://bfwdflpnmpiv" path="res://aud/score.mp3" id="6_f3cfo"]
+
+[sub_resource type="Animation" id="Animation_g4eit"]
+resource_name = "PauseScreenFadeIn"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pause:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.366667, 0.566667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pause/StartScreen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.566667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pause/GameoverScreen:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_f3cfo"]
+resource_name = "PauseScreenFadeOut"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pause:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ScoreCounter:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_3jmj3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pause/StartScreen:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pause/GameoverScreen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pause:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_31orh"]
+_data = {
+&"PauseScreenFadeIn": SubResource("Animation_g4eit"),
+&"PauseScreenFadeOut": SubResource("Animation_f3cfo"),
+&"RESET": SubResource("Animation_3jmj3")
+}
+
+[node name="Main" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_27gg6")
+pipe_dist_change = -0.25
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -5
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("2_g4eit")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 32, 576, 256)
+
+[node name="Obstacle Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="ObstacleParent" type="Node2D" parent="."]
+position = Vector2(304, 96)
+
+[node name="Ground" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, 224)
+texture = ExtResource("4_3jmj3")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 576, 32)
+
+[node name="Player" parent="." instance=ExtResource("1_cei7b")]
+position = Vector2(32, 120)
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="ScoreCounter" type="RichTextLabel" parent="GUI"]
+texture_filter = 1
+clip_contents = false
+offset_left = 136.0
+offset_top = 16.0
+offset_right = 208.0
+offset_bottom = 40.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("5_5mrjc")
+text = "0"
+fit_content = true
+
+[node name="Pause" type="Control" parent="GUI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StartScreen" type="ColorRect" parent="GUI/Pause"]
+layout_mode = 0
+offset_right = 288.0
+offset_bottom = 256.0
+color = Color(0, 0, 0, 1)
+
+[node name="Title" type="RichTextLabel" parent="GUI/Pause/StartScreen"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 64.0
+offset_top = 80.0
+offset_right = 344.0
+offset_bottom = 200.0
+theme_override_fonts/normal_font = ExtResource("5_5mrjc")
+text = "       Flappy Bird
+
+
+
+Press SPACE To Flap"
+
+[node name="GameoverScreen" type="ColorRect" parent="GUI/Pause"]
+visible = false
+layout_mode = 0
+offset_right = 288.0
+offset_bottom = 256.0
+color = Color(0, 0, 0, 1)
+
+[node name="Title" type="RichTextLabel" parent="GUI/Pause/GameoverScreen"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 8.0
+offset_top = 64.0
+offset_right = 280.0
+offset_bottom = 240.0
+theme_override_fonts/normal_font = ExtResource("5_5mrjc")
+text = "            		   Game Over!
+
+      		     Score: 
+	      High Score:
+
+        
+         Press SPACE to Continue"
+
+[node name="ScoreCounter" type="RichTextLabel" parent="GUI/Pause/GameoverScreen"]
+texture_filter = 1
+clip_contents = false
+layout_mode = 0
+offset_left = 144.0
+offset_top = 94.0
+offset_right = 216.0
+offset_bottom = 118.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("5_5mrjc")
+text = "0"
+fit_content = true
+
+[node name="HighScoreCounter" type="RichTextLabel" parent="GUI/Pause/GameoverScreen"]
+texture_filter = 1
+clip_contents = false
+layout_mode = 0
+offset_left = 144.0
+offset_top = 109.0
+offset_right = 216.0
+offset_bottom = 133.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("5_5mrjc")
+text = "0"
+fit_content = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GUI"]
+libraries = {
+&"": SubResource("AnimationLibrary_31orh")
+}
+
+[node name="GameStartSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_3jmj3")
+autoplay = true
+
+[node name="ScoreSound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(136, 16)
+stream = ExtResource("6_f3cfo")
+volume_db = -8.0
+
+[node name="ScoreSound2" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(136, 16)
+stream = ExtResource("6_f3cfo")
+volume_db = -8.0
+pitch_scale = 0.8
+
+[node name="GameOverMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_g4eit")
+
+[connection signal="timeout" from="Obstacle Timer" to="." method="_on_obstacle_timer_timeout"]
