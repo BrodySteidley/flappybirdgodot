@@ -211,7 +211,7 @@ offset_top = 64.0
 offset_right = 280.0
 offset_bottom = 240.0
 theme_override_fonts/normal_font = ExtResource("5_5mrjc")
-text = "            		   Game Over!
+text = "                  Game Over!
 
       		     Score: 
 	      High Score:
