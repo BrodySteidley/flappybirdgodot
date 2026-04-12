@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dkwnn61qerfo5"]
+[gd_scene format=3 uid="uid://dkwnn61qerfo5"]
 
 [ext_resource type="Script" uid="uid://cto4tf1s6qgul" path="res://src/pipe.gd" id="1_78010"]
 [ext_resource type="Texture2D" uid="uid://dwlwtlfcu4bjg" path="res://img/PipeStyle1.png" id="2_arayy"]
@@ -6,18 +6,18 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vv6yv"]
 size = Vector2(26, 214)
 
-[node name="Pipe" type="Node2D"]
+[node name="Pipe" type="Node2D" unique_id=881701718]
 z_index = -1
 script = ExtResource("1_78010")
 
-[node name="Top" type="Sprite2D" parent="."]
+[node name="Top" type="Sprite2D" parent="." unique_id=1723449753]
 texture_filter = 1
 position = Vector2(0, -92)
 texture = ExtResource("2_arayy")
 region_enabled = true
 region_rect = Rect2(0, 0, 32, 32)
 
-[node name="Middle" type="Sprite2D" parent="."]
+[node name="Middle" type="Sprite2D" parent="." unique_id=1546844893]
 texture_filter = 1
 texture_repeat = 2
 scale = Vector2(1, 9.5)
@@ -25,15 +25,15 @@ texture = ExtResource("2_arayy")
 region_enabled = true
 region_rect = Rect2(0, 32, 32, 16)
 
-[node name="Bottom" type="Sprite2D" parent="."]
+[node name="Bottom" type="Sprite2D" parent="." unique_id=1461127797]
 texture_filter = 1
 position = Vector2(0, 92)
 texture = ExtResource("2_arayy")
 region_enabled = true
 region_rect = Rect2(0, 48, 32, 32)
 
-[node name="PlayerCollider" type="Area2D" parent="."]
+[node name="PlayerCollider" type="Area2D" parent="." unique_id=88302443]
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCollider"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCollider" unique_id=252053790]
 shape = SubResource("RectangleShape2D_vv6yv")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cwcek8pt32yu2"]
+[gd_scene format=3 uid="uid://cwcek8pt32yu2"]
 
 [ext_resource type="Script" uid="uid://bcg7rh5cwiedy" path="res://src/main.gd" id="1_27gg6"]
 [ext_resource type="PackedScene" uid="uid://1yt2eq5hulc5" path="res://src/player.tscn" id="1_cei7b"]
@@ -123,12 +123,12 @@ _data = {
 &"RESET": SubResource("Animation_3jmj3")
 }
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" unique_id=1189129281]
 texture_filter = 1
 script = ExtResource("1_27gg6")
 pipe_dist_change = -0.25
 
-[node name="Background" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="." unique_id=791276428]
 z_index = -5
 texture_filter = 1
 texture_repeat = 2
@@ -137,13 +137,13 @@ centered = false
 region_enabled = true
 region_rect = Rect2(0, 32, 576, 256)
 
-[node name="Obstacle Timer" type="Timer" parent="."]
+[node name="Obstacle Timer" type="Timer" parent="." unique_id=1837047682]
 wait_time = 2.0
 
-[node name="ObstacleParent" type="Node2D" parent="."]
+[node name="ObstacleParent" type="Node2D" parent="." unique_id=1857128204]
 position = Vector2(304, 96)
 
-[node name="Ground" type="Sprite2D" parent="."]
+[node name="Ground" type="Sprite2D" parent="." unique_id=2134738810]
 texture_filter = 1
 texture_repeat = 2
 position = Vector2(0, 224)
@@ -152,12 +152,12 @@ centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 576, 32)
 
-[node name="Player" parent="." instance=ExtResource("1_cei7b")]
+[node name="Player" parent="." unique_id=361116572 instance=ExtResource("1_cei7b")]
 position = Vector2(32, 120)
 
-[node name="GUI" type="CanvasLayer" parent="."]
+[node name="GUI" type="CanvasLayer" parent="." unique_id=517935164]
 
-[node name="ScoreCounter" type="RichTextLabel" parent="GUI"]
+[node name="ScoreCounter" type="RichTextLabel" parent="GUI" unique_id=1178203883]
 texture_filter = 1
 clip_contents = false
 offset_left = 136.0
@@ -170,19 +170,19 @@ theme_override_fonts/normal_font = ExtResource("5_5mrjc")
 text = "0"
 fit_content = true
 
-[node name="Pause" type="Control" parent="GUI"]
+[node name="Pause" type="Control" parent="GUI" unique_id=1598075546]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="StartScreen" type="ColorRect" parent="GUI/Pause"]
+[node name="StartScreen" type="ColorRect" parent="GUI/Pause" unique_id=943092682]
 layout_mode = 0
 offset_right = 288.0
 offset_bottom = 256.0
 color = Color(0, 0, 0, 1)
 
-[node name="Title" type="RichTextLabel" parent="GUI/Pause/StartScreen"]
+[node name="Title" type="RichTextLabel" parent="GUI/Pause/StartScreen" unique_id=1920736190]
 texture_filter = 1
 layout_mode = 0
 offset_left = 64.0
@@ -196,14 +196,14 @@ text = "       Flappy Bird
 
 Press SPACE To Flap"
 
-[node name="GameoverScreen" type="ColorRect" parent="GUI/Pause"]
+[node name="GameoverScreen" type="ColorRect" parent="GUI/Pause" unique_id=1425914222]
 visible = false
 layout_mode = 0
 offset_right = 288.0
 offset_bottom = 256.0
 color = Color(0, 0, 0, 1)
 
-[node name="Title" type="RichTextLabel" parent="GUI/Pause/GameoverScreen"]
+[node name="Title" type="RichTextLabel" parent="GUI/Pause/GameoverScreen" unique_id=294535917]
 texture_filter = 1
 layout_mode = 0
 offset_left = 8.0
@@ -219,7 +219,7 @@ text = "                  Game Over!
         
          Press SPACE to Continue"
 
-[node name="ScoreCounter" type="RichTextLabel" parent="GUI/Pause/GameoverScreen"]
+[node name="ScoreCounter" type="RichTextLabel" parent="GUI/Pause/GameoverScreen" unique_id=67180468]
 texture_filter = 1
 clip_contents = false
 layout_mode = 0
@@ -233,7 +233,7 @@ theme_override_fonts/normal_font = ExtResource("5_5mrjc")
 text = "0"
 fit_content = true
 
-[node name="HighScoreCounter" type="RichTextLabel" parent="GUI/Pause/GameoverScreen"]
+[node name="HighScoreCounter" type="RichTextLabel" parent="GUI/Pause/GameoverScreen" unique_id=1008443958]
 texture_filter = 1
 clip_contents = false
 layout_mode = 0
@@ -247,27 +247,25 @@ theme_override_fonts/normal_font = ExtResource("5_5mrjc")
 text = "0"
 fit_content = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="GUI"]
-libraries = {
-&"": SubResource("AnimationLibrary_31orh")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GUI" unique_id=309451535]
+libraries/ = SubResource("AnimationLibrary_31orh")
 
-[node name="GameStartSound" type="AudioStreamPlayer" parent="."]
+[node name="GameStartSound" type="AudioStreamPlayer" parent="." unique_id=1471250227]
 stream = ExtResource("5_3jmj3")
 autoplay = true
 
-[node name="ScoreSound" type="AudioStreamPlayer2D" parent="."]
+[node name="ScoreSound" type="AudioStreamPlayer2D" parent="." unique_id=1845699827]
 position = Vector2(136, 16)
 stream = ExtResource("6_f3cfo")
 volume_db = -8.0
 
-[node name="ScoreSound2" type="AudioStreamPlayer2D" parent="."]
+[node name="ScoreSound2" type="AudioStreamPlayer2D" parent="." unique_id=996155491]
 position = Vector2(136, 16)
 stream = ExtResource("6_f3cfo")
 volume_db = -8.0
 pitch_scale = 0.8
 
-[node name="GameOverMusic" type="AudioStreamPlayer" parent="."]
+[node name="GameOverMusic" type="AudioStreamPlayer" parent="." unique_id=1084828587]
 stream = ExtResource("5_g4eit")
 
 [connection signal="timeout" from="Obstacle Timer" to="." method="_on_obstacle_timer_timeout"]

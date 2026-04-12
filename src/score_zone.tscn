@@ -1,18 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://i2l0pmxjf6es"]
+[gd_scene format=3 uid="uid://i2l0pmxjf6es"]
 
 [ext_resource type="Script" uid="uid://ulr1dyyybvt7" path="res://src/score_zone.gd" id="1_5u6m8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7om6x"]
 size = Vector2(4, 368)
 
-[node name="ScoreZone" type="Node2D"]
+[node name="ScoreZone" type="Node2D" unique_id=1092395837]
 script = ExtResource("1_5u6m8")
 
-[node name="PlayerCollider" type="Area2D" parent="."]
+[node name="PlayerCollider" type="Area2D" parent="." unique_id=660541877]
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCollider"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCollider" unique_id=1495254379]
 position = Vector2(2, 0)
 shape = SubResource("RectangleShape2D_7om6x")
 
